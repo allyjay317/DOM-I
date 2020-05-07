@@ -1,14 +1,35 @@
+@font-face {
+  font-family: "digital7";
+  src: url("/fonts/digital-7.ttf");
+}
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: black;
 }
 
 .digit {
   display: inline-block;
   font-size: 80px;
+  font-family: 'digital7';
+  color: green;
 }
 
 .redDigit {
   color: red;
+}
+
+.buttonrow{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button{
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
 }
