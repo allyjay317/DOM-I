@@ -37,6 +37,104 @@ const siteContent = {
   },
 };
 
+let localContent;
+
+///    ---   NAV   ---   ///
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+localContent = siteContent["nav"];
+let nav = document.querySelector("nav");
+let nav_a = nav.querySelectorAll("a");
+for(let i = 0;i<nav_a.length;i++){
+  nav_a[i].textContent = localContent[`nav-item-${i+1}`];
+  nav_a[i].style.color = "green";
+}
+
+let newA1 = document.createElement("a");
+newA1.setAttribute('scr', "#");
+newA1.textContent = "Click Me!";
+newA1.style.color = "green";
+
+let newA2 = document.createElement("a");
+newA2.setAttribute('scr', "#");
+newA2.textContent = "No, Click Me!";
+newA2.style.color = "green";
+
+nav.prepend(newA1);
+nav.append(newA2);
+
+
+///   ---   CTA   ---   ///
+let cta = document.querySelector(".cta");
+localContent = siteContent["cta"];
+cta.querySelector("h1").textContent = localContent["h1"];
+cta.querySelector("button").textContent = localContent["button"];
+document.querySelector("#cta-img").setAttribute("src", localContent["img-src"]);
+
+
+///   ---   MAIN-CONTENT    ---   ///
+let main_content = document.querySelector(".main-content");
+localContent = siteContent["main-content"];
+main_content.querySelector("#middle-img").setAttribute('src', localContent["middle-img-src"])
+let main_content_text = main_content.querySelectorAll(".text-content");
+
+///    ---   FEATURES    ---   ///
+main_content_text[0].querySelector("h4").textContent = localContent["features-h4"];
+main_content_text[0].querySelector("p").textContent = localContent["features-content"];
+
+///   ---   ABOUT   ---   ///
+main_content_text[1].querySelector("h4").textContent = localContent["about-h4"];
+main_content_text[1].querySelector("p").textContent = localContent["about-content"];
+
+///   ---   SERVICES    ---   ///
+main_content_text[2].querySelector("h4").textContent = localContent["services-h4"];
+main_content_text[2].querySelector("p").textContent = localContent["services-content"];
+
+///   ---   PRODUCT   ---   ///
+main_content_text[3].querySelector("h4").textContent = localContent["product-h4"];
+main_content_text[3].querySelector("p").textContent = localContent["product-content"];
+
+///   ---   VISION    ---   ///
+main_content_text[4].querySelector("h4").textContent = localContent["vision-h4"];
+main_content_text[4].querySelector("p").textContent = localContent["vision-content"];
+
+///   ---   CONTACT   ---   ///
+let contact = document.querySelector(".contact");
+localContent = siteContent["contact"];
+contact.querySelector("h4").textContent = localContent["contact-h4"];
+
+let contact_p = contact.querySelectorAll("p");
+contact_p[0].textContent = localContent["address"];
+contact_p[1].textContent = localContent["phone"];
+contact_p[2].textContent = localContent["email"];
+
+///   ---   FOOTER    ---   ///
+document.querySelector("footer").querySelector("p").textContent = siteContent["footer"]["copyright"];
+
+
+///   ---   STRETCH   ---   ///
+
+let increment = 0;
+let messages = [
+  "no, this button is just supposed to be for show, don't go clicking it!",
+  "seriously, stop pushing it",
+  "if you push this button one more time...",
+  "last chance!",
+  "okay, bye"
+]
+
+cta.querySelector("button").addEventListener("click", event =>{
+  let cta_h1 = document.querySelector(".cta").querySelector("h1");
+  cta_h1.textContent = messages[increment];
+  increment++;
+  setTimeout(function(){
+    if(increment <5){
+      cta_h1.textContent = siteContent["cta"]["h1"];
+    }
+    else {
+      document.querySelector("body").textContent = "";
+    }
+  }, 3000);
+});
